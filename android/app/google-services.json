@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "176414745465",
+    "project_id": "barber-app-ba7b2",
+    "storage_bucket": "barber-app-ba7b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176414745465:android:870d92ee0750f6dbbec5a8",
+        "android_client_info": {
+          "package_name": "com.example.barbearia_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176414745465-21pokihvq5qrdguosob0th3r1dble91i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNYjF4AWUce_6XOtlp9_a3r8Vtv41U2ng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176414745465-21pokihvq5qrdguosob0th3r1dble91i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "176414745465-82af0k3n8ioqbqd0hv05fitfki8n9cim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.barbeariaApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

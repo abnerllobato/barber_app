@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final IconData? prefixIcon;
   final TextInputType? keyboardtype;
-  final Function()? onChanged;
+  final Function(String)? onChanged;
   final Function()? onSubmited;
 
   final TextEditingController? controller;
@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         keyboardType: keyboardtype,
         initialValue: initialValue,
-        //onChanged: onChanged!(),
+        onChanged: onChanged,
         controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
