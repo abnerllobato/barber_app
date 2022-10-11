@@ -1,20 +1,24 @@
 part of 'login_page_bloc.dart';
 
-enum LoginStatus { authenticated, unauthenticated }
+enum LoginStatus { authenticated, unauthenticated, loading, success, failure }
 
 class LoginPageState extends Equatable {
+  final Email email;
+  final Password password;
+  final FormzStatus status1;
+  final String? errorMessage;
   final LoginStatus status;
-  final User user;
 
-  const LoginPageState._({
-    required this.status,
-    this.user = User.empty,
-  });
+  const LoginPageState._(
+      {required this.status,
+      this.email = const Email.pure(),
+      this.password = const Password.pure(),
+      this.status1 = FormzStatus.pure,
+      this.errorMessage});
 
-  const LoginPageState.authenticated(User user)
+  const LoginPageState.authenticated()
       : this._(
           status: LoginStatus.authenticated,
-          user: user,
         );
 
   const LoginPageState.unauthenticated()
@@ -22,6 +26,16 @@ class LoginPageState extends Equatable {
           status: LoginStatus.unauthenticated,
         );
 
+  const LoginPageState.loading()
+      : this._(
+          status: LoginStatus.loading,
+        );
+
+  const LoginPageState.success()
+      : this._(
+          status: LoginStatus.success,
+        );
+
   @override
-  List<Object?> get props => [status, user];
+  List<Object?> get props => [status, email, password, status1, errorMessage];
 }

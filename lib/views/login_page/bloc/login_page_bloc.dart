@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:barbearia_app/models/user_model.dart';
+import 'package:barbearia_app/models/email.dart';
+import 'package:barbearia_app/models/password.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:formz/formz.dart';
 
 import '../../../repositories/auth_repository.dart';
 
@@ -11,42 +12,40 @@ part 'login_page_event.dart';
 part 'login_page_state.dart';
 
 class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
-  final AuthRepository _authRepository;
-  StreamSubscription<User>? _userSubscription;
+  late AuthRepository _authRepository;
 
-  LoginPageBloc({required AuthRepository authRepository})
-      : _authRepository = authRepository,
-        super(
-          authRepository.currentUser.isNotEmpty
-              ? LoginPageState.authenticated(authRepository.currentUser)
-              : const LoginPageState.unauthenticated(),
-        ) {
-    on<LoginPageUserChanged>(_onUserChanged);
-    on<LoginPageLogoutRequested>(_onLogoutRequested);
-    _userSubscription = authRepository.user.listen(
-      (user) => add(LoginPageUserChanged(user)),
-    );
+  LoginPageBloc() : super(const LoginPageState.unauthenticated()) {
+    _authRepository = AuthRepository();
+    on<LoginButtonPressed>((event, emit) => _onUserChanged(event));
+    // on<LoginPageLogoutRequested>(_onLogoutRequested);
   }
 
-  void _onUserChanged(
-    LoginPageUserChanged event,
-    Emitter<LoginPageState> emit,
-  ) {
-    emit(event.user.isNotEmpty
-        ? LoginPageState.authenticated(event.user)
-        : const LoginPageState.unauthenticated());
+  Future<void> _onUserChanged(
+    LoginButtonPressed event,
+  ) async {
+    //TODO - Adicionar estado de loading
+    emit(LoginPageState.loading());
+    //TODO - await Request para FB autenticar
+    try {
+      await _authRepository.logInWithEmailAndPassword(
+          email: event.email, password: event.password);
+      emit(const LoginPageState.authenticated());
+    } catch (e) {
+      emit(const LoginPageState.unauthenticated());
+    }
+
+    //TODO - Se sucesso retornar estado de sucesse, mesma se falho.
   }
 
-  void _onLogoutRequested(
-    LoginPageLogoutRequested event,
-    Emitter<LoginPageState> emit,
-  ) {
-    unawaited(_authRepository.logOut());
-  }
+  //void _onLogoutRequested(
+  //  LoginPageLogoutRequested event,
+  //  Emitter<LoginPageState> emit,
+  //) {
+  //  unawaited(_authRepository.logOut());
+  // }
 
   @override
   Future<void> close() {
-    _userSubscription?.cancel();
     return super.close();
   }
 }
