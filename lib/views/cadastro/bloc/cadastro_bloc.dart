@@ -8,7 +8,6 @@ part 'cadastro_state.dart';
 class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
   CadastroBloc() : super(CadastroInitial()) {
     on<OnButtonPressedCadastroEvent>((event, emit) => _onPressed(event.dados));
-    //on<CadastroBarbeiro>(((event, emit) => emit(CadastroSuccessState(barbeiros: _cadastro.addClient(event.barbeiro)))));
   }
 
   Future<void> _onPressed(Cadastro cadastro) async {
