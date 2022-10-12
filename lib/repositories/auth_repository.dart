@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../models/user_model.dart';
-
 class AuthRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
 
@@ -27,5 +25,9 @@ class AuthRepository {
       email: email,
       password: password,
     );
+  }
+
+  Future<void> logOut() async {
+    await _firebaseAuth.signOut();
   }
 }

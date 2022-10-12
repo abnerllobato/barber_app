@@ -12,8 +12,6 @@ class LoginPage extends StatelessWidget {
   // controllers
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  // route
-  static Page<void> page() => MaterialPage<void>(child: LoginPage());
 
   @override
   Widget build(BuildContext context) {

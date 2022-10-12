@@ -1,11 +1,11 @@
+import 'package:barbearia_app/views/login_page/bloc/login_page_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/menu_button.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
-
-  static Page<void> page() => const MaterialPage<void>(child: MenuPage());
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,14 @@ class MenuPage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Barber Menu'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.exit_to_app),
+              onPressed: () {
+                context.read<LoginPageBloc>().add(SignOutButtonPressed());
+              },
+            ),
+          ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

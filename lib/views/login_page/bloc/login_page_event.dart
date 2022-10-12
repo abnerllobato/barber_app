@@ -9,15 +9,6 @@ abstract class LoginPageEvent extends Equatable {
 
 class LoginPageLogoutRequested extends LoginPageEvent {}
 
-//class LoginPageUserChanged extends LoginPageEvent {
-//  final User user;
-//
-//  const LoginPageUserChanged(this.user);
-//
-//  @override
-//  List<Object> get props => [user];
-//}
-
 class LoginButtonPressed extends LoginPageEvent {
   final String email;
   final String password;
@@ -25,5 +16,7 @@ class LoginButtonPressed extends LoginPageEvent {
   const LoginButtonPressed({required this.email, required this.password});
 
   @override
-  List<Object> get props => [this.email, this.password];
+  List<Object> get props => [email, password];
 }
+
+class SignOutButtonPressed extends LoginPageEvent {}
