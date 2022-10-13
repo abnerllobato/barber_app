@@ -1,5 +1,7 @@
 import 'package:barbearia_app/components/custom_text_field.dart';
+import 'package:barbearia_app/views/login_page/bloc/login_page_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 import '../menu_page.dart';
@@ -10,8 +12,6 @@ class LoginPage extends StatelessWidget {
   // controllers
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  // route
-  static Page<void> page() => MaterialPage<void>(child: LoginPage());
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,15 @@ class LoginPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          TextButton(onPressed: () {}, child: const Text('Entrar')),
+          TextButton(
+              onPressed: () {
+                context.read<LoginPageBloc>().add(
+                      LoginButtonPressed(
+                          email: _controllerEmail.text,
+                          password: _controllerPassword.text),
+                    );
+              },
+              child: const Text('Entrar')),
           const SizedBox(
             height: 10,
           ),
