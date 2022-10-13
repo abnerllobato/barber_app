@@ -140,6 +140,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "formz",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/formz-0.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_sign_in",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-5.4.2",
       "packageUri": "lib/",
@@ -302,7 +308,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-10-13T15:37:59.637681Z",
+  "generated": "2022-10-13T16:20:27.105682Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }
