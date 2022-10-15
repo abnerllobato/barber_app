@@ -45,6 +45,7 @@ dependencies:
   equatable: ^2.0.5
   flow_builder: ^0.0.9
   formz: ^0.4.1
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
