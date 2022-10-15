@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../repositories/auth_repository.dart';
@@ -15,6 +16,17 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
     _authRepository = AuthRepository();
     on<LoginButtonPressed>((event, emit) => _onUserChanged(event));
     on<SignOutButtonPressed>(((event, emit) => _onLogoutRequested()));
+    on<SignInTextChangedEvent>((event, emit) {
+      if (EmailValidator.validate(event.emailValue) == false) {
+        emit(const LoginPageState.errorState(
+            'Por Favor Entre Com Um E-mail Valido'));
+      } else if (event.passwordValue.length < 4) {
+        emit(const LoginPageState.errorState(
+            'Por Favor Insira Uma Senha Correta'));
+      } else {
+        emit(const LoginPageState.validState());
+      }
+    });
   }
 
   Future<void> _onUserChanged(

@@ -47,7 +47,7 @@ class MyAppView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          return LoginPage();
+          return const LoginPage();
         }),
         listener: (context, state) {
           if (state.status == LoginStatus.authenticated) {
@@ -59,7 +59,7 @@ class MyAppView extends StatelessWidget {
           if (state.status == LoginStatus.unauthenticated) {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: ((context) => LoginPage())),
+                MaterialPageRoute(builder: ((context) => const LoginPage())),
                 (route) => false);
           }
         },

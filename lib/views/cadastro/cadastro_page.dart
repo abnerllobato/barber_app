@@ -1,7 +1,6 @@
 import 'package:barbearia_app/components/custom_text_field.dart';
 import 'package:barbearia_app/models/cadastro_model.dart';
 import 'package:barbearia_app/views/cadastro/bloc/cadastro_bloc.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -99,16 +98,19 @@ class _CadastroPageState extends State<CadastroPage> {
                       CustomTextField(
                         controller: _controllerName,
                         labelText: "Nome",
+                        obscureText: false,
                       ),
                       CustomTextField(
                         controller: _controllerEmail,
                         labelText: "E-mail",
                         keyboardtype: TextInputType.emailAddress,
+                        obscureText: false,
                       ),
                       CustomTextField(
                         controller: _controllerPassword,
                         labelText: "Senha",
                         keyboardtype: TextInputType.visiblePassword,
+                        obscureText: true,
                       ),
                       TextButton(
                         onPressed: () {
