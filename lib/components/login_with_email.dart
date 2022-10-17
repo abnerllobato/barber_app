@@ -79,17 +79,24 @@ class LoginWithEmail extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: BlocBuilder<LoginPageBloc, LoginPageState>(
               builder: (context, state) {
-                return CupertinoButton(
-                  onPressed: (state.status == LoginStatus.validState)
-                      ? () {
-                          context.read<LoginPageBloc>().add(
-                                LoginButtonPressed(
-                                    email: _controllerEmail.text,
-                                    password: _controllerPassword.text),
-                              );
-                        }
-                      : null,
-                  child: const Text('Entrar'),
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: CupertinoButton(
+                    onPressed: (state.status == LoginStatus.validState)
+                        ? () {
+                            context.read<LoginPageBloc>().add(
+                                  LoginButtonPressed(
+                                      email: _controllerEmail.text,
+                                      password: _controllerPassword.text),
+                                );
+                          }
+                        : null,
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(),
+                    ),
+                    color: Colors.amber,
+                  ),
                 );
               },
             ),
