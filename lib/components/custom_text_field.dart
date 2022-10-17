@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String)? onChanged;
   final Function()? onSubmited;
   final bool obscureText;
+  final String? Function(String?)? validator;
 
   final TextEditingController? controller;
   final Function? onTap;
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     this.keyboardtype,
     required this.obscureText,
+    this.validator,
   });
 
   @override
@@ -37,6 +39,7 @@ class CustomTextField extends StatelessWidget {
         initialValue: initialValue,
         onChanged: onChanged,
         controller: controller,
+        validator: validator,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.amber, width: 3),

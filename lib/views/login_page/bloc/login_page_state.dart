@@ -30,7 +30,8 @@ class LoginPageState extends Equatable {
           status: LoginStatus.loading,
         );
 
-  const LoginPageState.errorState(String errorMessage)
+  const LoginPageState.errorState(
+      {String? errorMessage = "Ops! Algo errado aconteceu"})
       : this._(
           status: LoginStatus.errorState,
           errorMessage: errorMessage,
