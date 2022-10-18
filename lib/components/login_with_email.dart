@@ -32,8 +32,23 @@ class LoginWithEmail extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text(state.errorMessage!),
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: AlertDialog(
+                          title: const Text(
+                            "Opsssss !",
+                            textAlign: TextAlign.center,
+                          ),
+                          content: Text(
+                            state.errorMessage!,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
                   );
                 });
           }
