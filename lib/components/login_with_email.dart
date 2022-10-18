@@ -71,20 +71,20 @@ class LoginWithEmail extends StatelessWidget {
                   validator: (String? value) {
                     value = _controllerEmail.text;
                     if (value.isEmpty) {
-                      return 'Email Obrigatorio';
+                      return 'E-mail Obrigatorio';
                     }
                     if (EmailValidator.validate(value) == false) {
-                      return 'Insira um E-mail valido';
+                      return 'Insira um e-mail valido';
                     }
                   },
                   controller: _controllerEmail,
-                  labelText: 'Email',
+                  labelText: 'E-mail',
                 ),
                 CustomTextField(
                   validator: (String? value) {
                     value = _controllerPassword.text;
                     if (value.isEmpty) {
-                      return 'Senha Obrigatoria';
+                      return 'Senha obrigatoria';
                     } else if (value.length < 6) {
                       return 'Senha incorreta';
                     }

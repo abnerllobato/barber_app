@@ -39,7 +39,7 @@ class MyAppView extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Barber App',
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark(useMaterial3: true),
       home: BlocConsumer<LoginPageBloc, LoginPageState>(
         builder: ((context, state) {
           if (state.status == LoginStatus.loading) {

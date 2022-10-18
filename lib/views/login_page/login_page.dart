@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+//mport 'package:flutter_signin_button/flutter_signin_button.dart';
 
 import '../../components/login_with_email.dart';
-import '../menu_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -29,17 +29,19 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 50,
-                    child: ElevatedButton(
+                    child: CupertinoButton(
+                      color: Colors.amber,
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: ((context) => LoginWithEmail())));
                       },
-                      child: const Text('Entrar com E-mail e Senha'),
+                      child: const Text('Entrar com e-mail e senha'),
                     ),
                   ),
-                  const SizedBox(
+                  //    Botão Comentado (Sem Uso)
+                  /* const SizedBox(
                     height: 10,
                   ),
                   SizedBox(
@@ -54,7 +56,7 @@ class LoginPage extends StatelessWidget {
                                 builder: (context) => const MenuPage()));
                       },
                     ),
-                  ),
+                  ), */
                 ],
               ),
             ]),
