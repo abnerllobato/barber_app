@@ -62,6 +62,12 @@ class MyAppView extends StatelessWidget {
                 MaterialPageRoute(builder: ((context) => const LoginPage())),
                 (route) => false);
           }
+          if (state.status == LoginStatus.logoutState) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: ((context) => const LoginPage())),
+                (route) => false);
+          }
         },
       ),
     );

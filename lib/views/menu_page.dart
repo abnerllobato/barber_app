@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/menu_button.dart';
+import 'login_page/login_page.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -14,11 +15,29 @@ class MenuPage extends StatelessWidget {
           centerTitle: true,
           title: const Text('Barber Menu'),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              onPressed: () {
-                context.read<LoginPageBloc>().add(SignOutButtonPressed());
+            BlocListener<LoginPageBloc, LoginPageState>(
+              listener: (context, state) {
+                if (state.status == LoginStatus.logoutState) {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const LoginPage())),
+                      (route) => false);
+                }
+                if (state.status == LoginStatus.authenticated) {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const MenuPage())),
+                      (route) => false);
+                }
               },
+              child: IconButton(
+                icon: const Icon(Icons.exit_to_app),
+                onPressed: () {
+                  context.read<LoginPageBloc>().add(SignOutButtonPressed());
+                },
+              ),
             ),
           ],
         ),

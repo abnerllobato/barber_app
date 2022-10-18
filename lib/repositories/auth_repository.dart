@@ -28,6 +28,6 @@ class AuthRepository {
   }
 
   Future<void> logOut() async {
-    await _firebaseAuth.signOut();
+    await Future.wait([_firebaseAuth.signOut()]);
   }
 }

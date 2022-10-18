@@ -1,3 +1,4 @@
+import 'package:barbearia_app/views/menu_page.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,12 @@ class LoginWithEmail extends StatelessWidget {
                   );
                 });
           }
+          if (state.status == LoginStatus.authenticated) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: ((context) => const MenuPage())),
+                (route) => false);
+          }
         },
         builder: (context, state) {
           return Form(
@@ -67,12 +74,11 @@ class LoginWithEmail extends StatelessWidget {
                       return 'Email Obrigatorio';
                     }
                     if (EmailValidator.validate(value) == false) {
-                      return 'Ensira um E-mail valido';
+                      return 'Insira um E-mail valido';
                     }
                   },
                   controller: _controllerEmail,
                   labelText: 'Email',
-                  obscureText: false,
                 ),
                 CustomTextField(
                   validator: (String? value) {

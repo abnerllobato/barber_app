@@ -4,9 +4,8 @@ enum LoginStatus {
   authenticated,
   unauthenticated,
   loading,
-  invalidState,
-  validState,
-  errorState
+  errorState,
+  logoutState
 }
 
 class LoginPageState extends Equatable {
@@ -37,9 +36,9 @@ class LoginPageState extends Equatable {
           errorMessage: errorMessage,
         );
 
-  const LoginPageState.validState()
+  const LoginPageState.logoutState()
       : this._(
-          status: LoginStatus.validState,
+          status: LoginStatus.logoutState,
         );
 
   @override

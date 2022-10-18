@@ -98,13 +98,11 @@ class _CadastroPageState extends State<CadastroPage> {
                       CustomTextField(
                         controller: _controllerName,
                         labelText: "Nome",
-                        obscureText: false,
                       ),
                       CustomTextField(
                         controller: _controllerEmail,
                         labelText: "E-mail",
                         keyboardtype: TextInputType.emailAddress,
-                        obscureText: false,
                       ),
                       CustomTextField(
                         controller: _controllerPassword,

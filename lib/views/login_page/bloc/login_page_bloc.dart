@@ -41,13 +41,10 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
     }
   }
 
-  Future<void> _onLogoutRequested() async {
-    try {
-      await _authRepository.logOut();
-      emit(const LoginPageState.unauthenticated());
-    } catch (e) {
-      emit(const LoginPageState.authenticated());
-    }
+  _onLogoutRequested() {
+    _authRepository.logOut();
+    emit(const LoginPageState.logoutState());
+    emit(const LoginPageState.unauthenticated());
   }
 
   @override

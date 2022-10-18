@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
     this.onSubmited,
     this.onTap,
     this.keyboardtype,
-    required this.obscureText,
+    this.obscureText = false,
     this.validator,
   });
 
