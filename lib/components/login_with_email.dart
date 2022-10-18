@@ -74,7 +74,7 @@ class LoginWithEmail extends StatelessWidget {
                       return 'Email Obrigatorio';
                     }
                     if (EmailValidator.validate(value) == false) {
-                      return 'Insira um E-mail valido';
+                      return 'Insira um e-mail valido';
                     }
                   },
                   controller: _controllerEmail,
@@ -84,7 +84,7 @@ class LoginWithEmail extends StatelessWidget {
                   validator: (String? value) {
                     value = _controllerPassword.text;
                     if (value.isEmpty) {
-                      return 'Senha Obrigatoria';
+                      return 'Senha obrigatoria';
                     } else if (value.length < 6) {
                       return 'Senha incorreta';
                     }
