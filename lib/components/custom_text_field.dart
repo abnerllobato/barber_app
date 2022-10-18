@@ -8,6 +8,8 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardtype;
   final Function(String)? onChanged;
   final Function()? onSubmited;
+  final bool obscureText;
+  final String? Function(String?)? validator;
 
   final TextEditingController? controller;
   final Function? onTap;
@@ -23,6 +25,8 @@ class CustomTextField extends StatelessWidget {
     this.onSubmited,
     this.onTap,
     this.keyboardtype,
+    this.obscureText = false,
+    this.validator,
   });
 
   @override
@@ -30,10 +34,12 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        obscureText: obscureText,
         keyboardType: keyboardtype,
         initialValue: initialValue,
         onChanged: onChanged,
         controller: controller,
+        validator: validator,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.amber, width: 3),

@@ -1,6 +1,12 @@
 part of 'login_page_bloc.dart';
 
-enum LoginStatus { authenticated, unauthenticated, loading, success, failure }
+enum LoginStatus {
+  authenticated,
+  unauthenticated,
+  loading,
+  errorState,
+  logoutState
+}
 
 class LoginPageState extends Equatable {
   final String? errorMessage;
@@ -23,9 +29,16 @@ class LoginPageState extends Equatable {
           status: LoginStatus.loading,
         );
 
-  const LoginPageState.success()
+  const LoginPageState.errorState(
+      {String? errorMessage = "Ops! Algo errado aconteceu"})
       : this._(
-          status: LoginStatus.success,
+          status: LoginStatus.errorState,
+          errorMessage: errorMessage,
+        );
+
+  const LoginPageState.logoutState()
+      : this._(
+          status: LoginStatus.logoutState,
         );
 
   @override

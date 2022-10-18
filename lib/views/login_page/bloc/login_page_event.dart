@@ -20,3 +20,13 @@ class LoginButtonPressed extends LoginPageEvent {
 }
 
 class SignOutButtonPressed extends LoginPageEvent {}
+
+class SignInTextChangedEvent extends LoginPageEvent {
+  final String emailValue;
+  final String passwordValue;
+
+  const SignInTextChangedEvent(this.emailValue, this.passwordValue);
+
+  @override
+  List<Object> get props => [emailValue, passwordValue];
+}
