@@ -1,17 +1,22 @@
 part of 'cadastro_bloc.dart';
 
-@immutable
-abstract class CadastroEvent {}
+abstract class CadastroEvent extends Equatable {
+  const CadastroEvent();
+
+  @override
+  List<Object?> get props => [];
+}
 
 class LoadCadastroEvent extends CadastroEvent {}
 
-class OnButtonPressedCadastroEvent extends CadastroEvent {
-  final Cadastro dados;
-  OnButtonPressedCadastroEvent(this.dados);
-}
+class CadastroButtonEvent extends CadastroEvent {
+  final String name;
+  final String email;
+  final String password;
 
-class CadastroBarbeiro extends CadastroEvent {
-  final Cadastro barbeiro;
+  const CadastroButtonEvent(
+      {required this.name, required this.email, required this.password});
 
-  CadastroBarbeiro(this.barbeiro, {required List<Cadastro> barbeiros});
+  @override
+  List<Object?> get props => [email, password, name];
 }

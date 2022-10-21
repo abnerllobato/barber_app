@@ -1,5 +1,4 @@
 import 'package:barbearia_app/components/custom_text_field.dart';
-import 'package:barbearia_app/models/cadastro_model.dart';
 import 'package:barbearia_app/views/cadastro/bloc/cadastro_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,10 +42,10 @@ class _CadastroPageState extends State<CadastroPage> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
-                              "Ops Algo de Errado não esta certo !!!",
-                              style: TextStyle(
+                              state.errorMessage,
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
@@ -65,14 +64,8 @@ class _CadastroPageState extends State<CadastroPage> {
               );
             }
             if (state is CadastroSuccessState) {
-              return Center(
-                child: Column(
-                  children: [
-                    Text(state.name),
-                    Text(state.email),
-                    Text(state.password),
-                  ],
-                ),
+              return const Center(
+                child: Text('Sucesso Ao Cadastrar'),
               );
             }
 
@@ -112,17 +105,10 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          context
-                              .read<CadastroBloc>()
-                              .add(OnButtonPressedCadastroEvent(
-                                Cadastro(
-                                  email: _controllerEmail.text,
-                                  name: _controllerName.text,
-                                  password: _controllerPassword.text,
-                                  dataCriacao: '',
-                                  dataModificacao: '',
-                                  nivel: 'adm',
-                                ),
+                          context.read<CadastroBloc>().add(CadastroButtonEvent(
+                                name: _controllerName.text,
+                                email: _controllerEmail.text,
+                                password: _controllerPassword.text,
                               ));
                         },
                         child: const Text(

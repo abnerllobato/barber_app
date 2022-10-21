@@ -7,10 +7,13 @@ class CadastroInitial extends CadastroState {}
 class CadastroLoading extends CadastroState {}
 
 class CadastroSuccessState extends CadastroState {
-  final String name;
-  final String email;
-  final String password;
-  CadastroSuccessState(this.name, this.email, this.password);
+  final String? email;
+  final String? password;
+  CadastroSuccessState(this.email, this.password);
 }
 
-class CadastroFailed extends CadastroState {}
+class CadastroFailed extends CadastroState {
+  final String errorMessage;
+
+  CadastroFailed({required this.errorMessage});
+}
