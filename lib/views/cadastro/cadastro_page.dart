@@ -4,8 +4,6 @@ import 'package:barbearia_app/views/menu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../login_page/login_page.dart';
-
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
 
