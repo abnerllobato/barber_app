@@ -1,4 +1,3 @@
-import 'package:barbearia_app/models/cadastro_model.dart';
 import 'package:barbearia_app/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -18,7 +17,7 @@ class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
     CadastroButtonEvent event,
   ) async {
     // ignore: invalid_use_of_visible_for_testing_member
-    // emit(CadastroLoading());
+    emit(CadastroLoading());
     try {
       await _authRepository.signup(
           email: event.email,
@@ -27,10 +26,11 @@ class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
           dataCriacao: '15/10/2022',
           dataModificacao: '16/10/2022',
           nivel: 'cliente');
+      // ignore: invalid_use_of_visible_for_testing_member
+      emit(CadastroSuccessState(name: event.name));
     } catch (e) {
       // ignore: invalid_use_of_visible_for_testing_member
       emit(CadastroFailed(errorMessage: e.toString()));
-      print(e);
     }
 
     // throw Exception('algo de errado não esta certo!');
