@@ -26,6 +26,7 @@ class _CadastroPageState extends State<CadastroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: BlocProvider<CadastroBloc>(
         create: (context) => CadastroBloc(),
         child: BlocConsumer<CadastroBloc, CadastroState>(
