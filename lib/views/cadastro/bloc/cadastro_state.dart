@@ -15,5 +15,5 @@ class CadastroFailed extends CadastroState {
   final String errorMessage;
 
   CadastroFailed(
-      {this.errorMessage = 'Ops Algo de errado aconteceu, tente novamene !!'});
+      {this.errorMessage = 'Ops Algo de errado aconteceu, tente novamente !!'});
 }
