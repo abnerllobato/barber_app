@@ -119,6 +119,9 @@ class _CadastroPageState extends State<CadastroPage> {
                                   email: _controllerEmail.text,
                                   name: _controllerName.text,
                                   password: _controllerPassword.text,
+                                  dataCriacao: '',
+                                  dataModificacao: '',
+                                  nivel: 'adm',
                                 ),
                               ));
                         },

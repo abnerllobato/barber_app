@@ -1,3 +1,4 @@
+import 'package:barbearia_app/views/cadastro/cadastro_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //mport 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -40,6 +41,14 @@ class LoginPage extends StatelessWidget {
                       child: const Text('Entrar com e-mail e senha'),
                     ),
                   ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CadastroPage()));
+                      },
+                      child: const Text('Não é Cadastrado ? Cadastre-se')),
                   //    Botão Comentado (Sem Uso)
                   /* const SizedBox(
                     height: 10,
