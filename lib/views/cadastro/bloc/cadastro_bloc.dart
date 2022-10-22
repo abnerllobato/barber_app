@@ -9,6 +9,8 @@ part 'cadastro_state.dart';
 class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
   late AuthRepository _authRepository;
 
+  final _data = DateTime.now().toString();
+
   CadastroBloc() : super(CadastroInitial()) {
     _authRepository = AuthRepository();
     on<CadastroButtonEvent>((event, emit) => _onPressed(event));
@@ -24,9 +26,10 @@ class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
           email: event.email,
           password: event.password,
           name: event.name,
-          dataCriacao: '15/10/2022',
-          dataModificacao: '16/10/2022',
+          dataCriacao: _data,
+          dataModificacao: _data,
           nivel: 'cliente');
+      emit(CadastroSuccessState(name: event.name));
     } catch (e) {
       if (e is FirebaseAuthException) {
         if (e.code == 'email-already-in-use') {
