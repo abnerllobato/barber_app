@@ -39,24 +39,22 @@ class _CadastroPageState extends State<CadastroPage> {
                   ),
                   backgroundColor: Colors.amberAccent, // <-- SEE HERE
                   builder: (context) {
-                    return SizedBox(
+                    return Container(
                       height: 200,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                state.errorMessage,
-                                style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              )
-                            ]),
-                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              state.errorMessage,
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            )
+                          ]),
                     );
                   });
             }
@@ -75,12 +73,6 @@ class _CadastroPageState extends State<CadastroPage> {
                 ),
               );
             }
-            if (state is CadastroSuccessState) {
-              return const Center(
-                child: Text('Sucesso Ao Cadastrar'),
-              );
-            }
-
             return Scaffold(
               body: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 100),
