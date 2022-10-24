@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:barbearia_app/services/issues_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,14 +29,8 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
       emit(const LoginPageState.authenticated());
     } catch (e) {
       if (e is FirebaseAuthException) {
-        if (e.code == 'wrong-password') {
-          emit(LoginPageState.errorState(errorMessage: 'Senha Incorreta'));
-        } else if (e.code == 'invalid-email') {
-          emit(LoginPageState.errorState(errorMessage: 'Email Incorreto'));
-        } else if (e.code == 'user-not-found') {
-          emit(LoginPageState.errorState(
-              errorMessage: 'Usuario Não encontrado'));
-        }
+        emit(LoginPageState.errorState(
+            errorMessage: IssueService.getMessagesFromFirebaseCode(e.code)));
       }
     }
   }

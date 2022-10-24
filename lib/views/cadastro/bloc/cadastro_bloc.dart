@@ -2,6 +2,7 @@ import 'package:barbearia_app/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:barbearia_app/services/issues_service.dart';
 
 part 'cadastro_event.dart';
 part 'cadastro_state.dart';
@@ -28,15 +29,8 @@ class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
       emit(CadastroSuccessState(name: event.name));
     } catch (e) {
       if (e is FirebaseAuthException) {
-        if (e.code == 'email-already-in-use') {
-          emit(CadastroFailed(errorMessage: 'E-mail já esta em uso'));
-        } else if (e.code == 'invalid-email') {
-          emit(CadastroFailed(errorMessage: 'E-mail Invalido'));
-        } else if (e.code == 'weak-password') {
-          emit(CadastroFailed(errorMessage: 'Senha Muito Fraca'));
-        } else {
-          emit(CadastroFailed());
-        }
+        emit(CadastroFailed(
+            errorMessage: IssueService.getMessagesFromFirebaseCode(e.code)));
       }
     }
   }
