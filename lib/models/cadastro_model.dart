@@ -1,28 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
-  String? name;
-  String? email;
-  String? password;
+  String name;
+  String email;
   String? createdAt;
   String? updatedAt;
   UserType? userType;
   String? uid;
 
-  UserModel(
-      {this.name,
-      this.createdAt,
-      this.updatedAt,
-      this.email,
-      this.userType,
-      this.password,
-      this.uid});
+  UserModel({
+    required this.name,
+    required this.email,
+    this.createdAt,
+    this.updatedAt,
+    this.userType,
+    this.uid,
+  });
 
   factory UserModel.fromJson(dynamic json) {
     return UserModel(
         name: json['name'],
         email: json['email'],
-        password: json['password'],
         createdAt: json['dataCriacao'],
         updatedAt: json['dataModificacao'],
         userType: json['nivel']);
@@ -56,7 +54,9 @@ class UserModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toFirestore() {
+    assert(uid == null);
+    assert(createdAt == null);
     return {
       'uid': uid,
       'name': name,
@@ -67,20 +67,9 @@ class UserModel {
     };
   }
 
-  static UserModel fromSnapshot(DocumentSnapshot snap) {
-    UserModel cadastro = UserModel(
-        name: snap['name'],
-        email: snap['email'],
-        password: snap['password'],
-        createdAt: snap['dataCriacao'],
-        updatedAt: snap['dataModificacao'],
-        userType: snap['nivel']);
-    return cadastro;
-  }
-
   @override
   String toString() {
-    return '{ $name, $email, $password,$createdAt,$updatedAt, $userType}';
+    return '{ $name, $email,$createdAt,$updatedAt, $userType}';
   }
 }
 

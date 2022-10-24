@@ -38,8 +38,6 @@ class AuthRepository {
       email,
       userCredential.user!.uid,
     );
-
-    user.toMap();
     saveProfileData(user);
     return user;
   }
@@ -49,7 +47,7 @@ class AuthRepository {
         .collection('users')
         .withConverter(
             fromFirestore: UserModel.fromFirestore,
-            toFirestore: (UserModel user, options) => user.toMap())
+            toFirestore: (UserModel user, options) => user.toFirestore())
         .doc(user.uid);
     await docRef.set(user);
   }
