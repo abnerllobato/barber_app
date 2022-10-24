@@ -21,9 +21,9 @@ class UserModel {
     return UserModel(
         name: json['name'],
         email: json['email'],
-        createdAt: json['dataCriacao'],
-        updatedAt: json['dataModificacao'],
-        userType: json['nivel']);
+        createdAt: json['createdAt'],
+        updatedAt: json['updatedAt'],
+        userType: json['userType']);
   }
 
   factory UserModel.fromSignUpCustumerRequest(
@@ -57,6 +57,8 @@ class UserModel {
   Map<String, dynamic> toFirestore() {
     assert(uid == null);
     assert(createdAt == null);
+    assert(updatedAt == null);
+    assert(userType == null);
     return {
       'uid': uid,
       'name': name,
