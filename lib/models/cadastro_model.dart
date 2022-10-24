@@ -1,45 +1,57 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Cadastro {
+class UserModel {
   String? name;
   String? email;
   String? password;
-  String? dataCriacao;
-  String? dataModificacao;
-  String? nivel;
+  String? createdAt;
+  String? updatedAt;
+  UserType? userType;
   String? uid;
 
-  Cadastro(
+  UserModel(
       {this.name,
-      this.dataCriacao,
-      this.dataModificacao,
+      this.createdAt,
+      this.updatedAt,
       this.email,
-      this.nivel,
+      this.userType,
       this.password,
       this.uid});
 
-  factory Cadastro.fromJson(dynamic json) {
-    return Cadastro(
+  factory UserModel.fromJson(dynamic json) {
+    return UserModel(
         name: json['name'],
         email: json['email'],
         password: json['password'],
-        dataCriacao: json['dataCriacao'],
-        dataModificacao: json['dataModificacao'],
-        nivel: json['nivel']);
+        createdAt: json['dataCriacao'],
+        updatedAt: json['dataModificacao'],
+        userType: json['nivel']);
   }
 
-  factory Cadastro.fromFirestore(
+  factory UserModel.fromSignUpCustumerRequest(
+      String name, String email, String uid) {
+    return UserModel(
+        name: name,
+        email: email,
+        createdAt: DateTime.now().toString(),
+        updatedAt: DateTime.now().toString(),
+        userType: UserType.customer,
+        uid: uid);
+  }
+
+  //TODO factory from signup informations.
+
+  factory UserModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
-    return Cadastro(
+    return UserModel(
       name: data?['name'],
       email: data?['email'],
-      password: data?['password'],
-      dataCriacao: data?['dataCriacao'],
-      dataModificacao: data?['dataModificacao'],
-      nivel: data?['nivel'],
+      createdAt: DateTime.now().toString(),
+      updatedAt: DateTime.now().toString(),
+      userType: UserType.customer,
       uid: data?['uid'],
     );
   }
@@ -49,26 +61,31 @@ class Cadastro {
       'uid': uid,
       'name': name,
       'email': email,
-      'password': password,
-      'dataCriacao': dataCriacao,
-      'dataModificacao': dataModificacao,
-      'nivel': nivel,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'userType': userType!.name,
     };
   }
 
-  static Cadastro fromSnapshot(DocumentSnapshot snap) {
-    Cadastro cadastro = Cadastro(
+  static UserModel fromSnapshot(DocumentSnapshot snap) {
+    UserModel cadastro = UserModel(
         name: snap['name'],
         email: snap['email'],
         password: snap['password'],
-        dataCriacao: snap['dataCriacao'],
-        dataModificacao: snap['dataModificacao'],
-        nivel: snap['nivel']);
+        createdAt: snap['dataCriacao'],
+        updatedAt: snap['dataModificacao'],
+        userType: snap['nivel']);
     return cadastro;
   }
 
   @override
   String toString() {
-    return '{ $name, $email, $password,$dataCriacao,$dataModificacao, $nivel}';
+    return '{ $name, $email, $password,$createdAt,$updatedAt, $userType}';
   }
+}
+
+enum UserType {
+  customer,
+  barber,
+  admin,
 }

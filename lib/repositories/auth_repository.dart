@@ -20,59 +20,38 @@ class AuthRepository {
     );
   }
 
-  signup({
+  Future<UserModel> signup({
     required String email,
     required String password,
     required String name,
-    String? dataCriacao,
-    String? dataModificacao,
-    String? nivel,
-    UserCredential? uid,
   }) async {
-    await _firebaseAuth
-        .createUserWithEmailAndPassword(
+    UserCredential userCredential =
+        await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
-    )
-        .then((uuid) async {
-      saveProfileData(
-        email,
-        name,
-        dataCriacao,
-        dataModificacao,
-        nivel,
-        password,
-      );
-      await logInWithEmailAndPassword(email: email, password: password);
-    });
+    );
+    if (userCredential.user?.uid == null) {
+      throw Exception('User null');
+    }
+    UserModel user = UserModel.fromSignUpCustumerRequest(
+      name,
+      email,
+      userCredential.user!.uid,
+    );
+
+    user.toMap();
+    saveProfileData(user);
+    return user;
   }
 
-  void saveProfileData(
-    email,
-    name,
-    dataCriacao,
-    dataModificacao,
-    nivel,
-    password,
-  ) async {
-    User? userid = _firebaseAuth.currentUser;
-    Cadastro cadastroUser = Cadastro();
-
-    cadastroUser.email = email;
-    cadastroUser.name = name;
-    cadastroUser.dataCriacao = dataCriacao;
-    cadastroUser.dataModificacao = dataModificacao;
-    cadastroUser.nivel = nivel;
-    cadastroUser.password = password;
-    cadastroUser.uid = userid!.uid;
-
+  void saveProfileData(UserModel user) async {
     final docRef = db
         .collection('users')
         .withConverter(
-            fromFirestore: Cadastro.fromFirestore,
-            toFirestore: (Cadastro user, options) => user.toMap())
-        .doc(cadastroUser.uid);
-    await docRef.set(cadastroUser);
+            fromFirestore: UserModel.fromFirestore,
+            toFirestore: (UserModel user, options) => user.toMap())
+        .doc(user.uid);
+    await docRef.set(user);
   }
 
   forgetPassword(email) async {
