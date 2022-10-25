@@ -1,4 +1,4 @@
-import 'package:barbearia_app/views/cadastro/cadastro_page.dart';
+import 'package:barbearia_app/views/signup/signup_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //mport 'package:flutter_signin_button/flutter_signin_button.dart';

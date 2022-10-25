@@ -1,5 +1,5 @@
 import 'package:barbearia_app/components/custom_text_field.dart';
-import 'package:barbearia_app/views/cadastro/bloc/cadastro_bloc.dart';
+import 'package:barbearia_app/views/signup/bloc/signup_bloc.dart';
 import 'package:barbearia_app/views/menu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,11 +25,11 @@ class _CadastroPageState extends State<CadastroPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocProvider<CadastroBloc>(
-        create: (context) => CadastroBloc(),
-        child: BlocConsumer<CadastroBloc, CadastroState>(
+      body: BlocProvider<SignupBloc>(
+        create: (context) => SignupBloc(),
+        child: BlocConsumer<SignupBloc, SignupState>(
           listener: (context, state) {
-            if (state is CadastroFailed) {
+            if (state is SignupFailed) {
               showModalBottomSheet(
                   context: context,
                   shape: const RoundedRectangleBorder(
@@ -58,7 +58,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     );
                   });
             }
-            if (state is CadastroSuccessState) {
+            if (state is SignupSuccessState) {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: ((context) => const MenuPage())),
@@ -66,7 +66,7 @@ class _CadastroPageState extends State<CadastroPage> {
             }
           },
           builder: (context, state) {
-            if (state is CadastroLoading) {
+            if (state is SignupLoading) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: Colors.amber,
@@ -109,7 +109,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          context.read<CadastroBloc>().add(CadastroButtonEvent(
+                          context.read<SignupBloc>().add(CadastroButtonEvent(
                                 name: _controllerName.text,
                                 email: _controllerEmail.text,
                                 password: _controllerPassword.text,

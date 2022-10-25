@@ -1,4 +1,4 @@
-import 'package:barbearia_app/models/cadastro_model.dart';
+import 'package:barbearia_app/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,11 +38,11 @@ class AuthRepository {
       email,
       userCredential.user!.uid,
     );
-    saveProfileData(user);
+    await saveUserProfileDataOnFirestore(user);
     return user;
   }
 
-  void saveProfileData(UserModel user) async {
+  Future<void> saveUserProfileDataOnFirestore(UserModel user) async {
     final docRef = db
         .collection('users')
         .withConverter(

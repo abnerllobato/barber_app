@@ -11,7 +11,8 @@ class IssueService {
         return errorMessage = 'Senha Incorreta';
       case 'user-not-found':
         return errorMessage = 'Usuario Não Encontrado';
+      default:
+        return errorMessage;
     }
-    return errorMessage;
   }
 }

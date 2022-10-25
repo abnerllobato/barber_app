@@ -1,15 +1,15 @@
-part of 'cadastro_bloc.dart';
+part of 'signup_bloc.dart';
 
-abstract class CadastroEvent extends Equatable {
-  const CadastroEvent();
+abstract class SignupEvent extends Equatable {
+  const SignupEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class LoadCadastroEvent extends CadastroEvent {}
+class LoadCadastroEvent extends SignupEvent {}
 
-class CadastroButtonEvent extends CadastroEvent {
+class CadastroButtonEvent extends SignupEvent {
   final String name;
   final String email;
   final String password;

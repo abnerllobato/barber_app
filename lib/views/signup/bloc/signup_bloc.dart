@@ -4,13 +4,13 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:barbearia_app/services/issues_service.dart';
 
-part 'cadastro_event.dart';
-part 'cadastro_state.dart';
+part 'signup_event.dart';
+part 'signup_state.dart';
 
-class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
+class SignupBloc extends Bloc<SignupEvent, SignupState> {
   late AuthRepository _authRepository;
 
-  CadastroBloc() : super(CadastroInitial()) {
+  SignupBloc() : super(SignupInitial()) {
     _authRepository = AuthRepository();
     on<CadastroButtonEvent>((event, emit) => _onPressed(event));
   }
@@ -18,18 +18,17 @@ class CadastroBloc extends Bloc<CadastroEvent, CadastroState> {
   Future<void> _onPressed(
     CadastroButtonEvent event,
   ) async {
-    // ignore: invalid_use_of_visible_for_testing_member
-    emit(CadastroLoading());
+    emit(SignupLoading());
     try {
       await _authRepository.signup(
         email: event.email,
         password: event.password,
         name: event.name,
       );
-      emit(CadastroSuccessState(name: event.name));
+      emit(SignupSuccessState(name: event.name));
     } catch (e) {
       if (e is FirebaseAuthException) {
-        emit(CadastroFailed(
+        emit(SignupFailed(
             errorMessage: IssueService.getMessagesFromFirebaseCode(e.code)));
       }
     }

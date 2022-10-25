@@ -37,8 +37,6 @@ class UserModel {
         uid: uid);
   }
 
-  //TODO factory from signup informations.
-
   factory UserModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
