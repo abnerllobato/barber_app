@@ -21,9 +21,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     emit(SignupLoading());
     try {
       await _authRepository.signup(
+        name: event.name,
         email: event.email,
         password: event.password,
-        name: event.name,
       );
       emit(SignupSuccessState());
     } catch (e) {
