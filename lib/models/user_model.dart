@@ -53,17 +53,13 @@ class UserModel {
   }
 
   Map<String, dynamic> toFirestore() {
-    assert(uid == null);
-    assert(createdAt == null);
-    assert(updatedAt == null);
-    assert(userType == null);
     return {
-      'uid': uid,
       'name': name,
       'email': email,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
-      'userType': userType!.name,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (updatedAt != null) 'updatedAt': updatedAt,
+      if (userType != null) 'userType': userType!.name,
+      if (uid != null) 'uid': uid,
     };
   }
 
