@@ -7,14 +7,14 @@ abstract class SignupEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class LoadCadastroEvent extends SignupEvent {}
+class LoadSignupEvent extends SignupEvent {}
 
-class CadastroButtonEvent extends SignupEvent {
+class SignupButtonEvent extends SignupEvent {
   final String name;
   final String email;
   final String password;
 
-  const CadastroButtonEvent(
+  const SignupButtonEvent(
       {required this.name, required this.email, required this.password});
 
   @override

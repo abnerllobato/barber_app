@@ -109,7 +109,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          context.read<SignupBloc>().add(CadastroButtonEvent(
+                          context.read<SignupBloc>().add(SignupButtonEvent(
                                 name: _controllerName.text,
                                 email: _controllerEmail.text,
                                 password: _controllerPassword.text,

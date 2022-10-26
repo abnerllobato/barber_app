@@ -12,11 +12,11 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
   SignupBloc() : super(SignupInitial()) {
     _authRepository = AuthRepository();
-    on<CadastroButtonEvent>((event, emit) => _onPressed(event));
+    on<SignupButtonEvent>((event, emit) => _onPressed(event));
   }
 
   Future<void> _onPressed(
-    CadastroButtonEvent event,
+    SignupButtonEvent event,
   ) async {
     emit(SignupLoading());
     try {
