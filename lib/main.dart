@@ -1,4 +1,5 @@
 import 'package:barbearia_app/firebase_options.dart';
+import 'package:barbearia_app/locator.dart';
 import 'package:barbearia_app/views/login_page/bloc/login_page_bloc.dart';
 import 'package:barbearia_app/views/login_page/login_page.dart';
 import 'package:barbearia_app/views/menu_page.dart';
@@ -14,7 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  setup();
   runApp(const MyApp());
 }
 

@@ -1,3 +1,4 @@
+import 'package:barbearia_app/locator.dart';
 import 'package:barbearia_app/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -8,7 +9,7 @@ part 'signup_event.dart';
 part 'signup_state.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
-  late AuthRepository _authRepository;
+  var _authRepository = serviceLocator.get<AuthRepository>();
 
   SignupBloc() : super(SignupInitial()) {
     _authRepository = AuthRepository();

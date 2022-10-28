@@ -6,14 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CadastroPage extends StatefulWidget {
-  const CadastroPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<CadastroPage> createState() => _CadastroPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _CadastroPageState extends State<CadastroPage> {
+class _SignupPageState extends State<SignupPage> {
   final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
