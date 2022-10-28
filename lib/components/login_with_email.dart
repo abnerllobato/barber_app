@@ -111,33 +111,31 @@ class LoginWithEmail extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ValueListenableBuilder<bool>(
-                          valueListenable: formValid,
-                          builder: (_, formValid, child) {
-                            return CupertinoButton(
-                              onPressed: !formValid
-                                  ? null
-                                  : () {
-                                      formKey.currentState?.validate();
-                                      context.read<LoginPageBloc>().add(
-                                            LoginButtonPressed(
-                                                email: _controllerEmail.text,
-                                                password:
-                                                    _controllerPassword.text),
-                                          );
-                                    },
-                              color: Colors.amber,
-                              child: const Text(
-                                'Entrar',
-                                style: TextStyle(),
-                              ),
-                            );
-                          }),
-                    )),
+                Container(
+                  padding: const EdgeInsets.all(8.0),
+                  width: MediaQuery.of(context).size.width,
+                  child: ValueListenableBuilder<bool>(
+                      valueListenable: formValid,
+                      builder: (_, formValid, child) {
+                        return CupertinoButton(
+                          onPressed: !formValid
+                              ? null
+                              : () {
+                                  formKey.currentState?.validate();
+                                  context.read<LoginPageBloc>().add(
+                                        LoginButtonPressed(
+                                            email: _controllerEmail.text,
+                                            password: _controllerPassword.text),
+                                      );
+                                },
+                          color: Colors.amber,
+                          child: const Text(
+                            'Entrar',
+                            style: TextStyle(),
+                          ),
+                        );
+                      }),
+                ),
               ],
             ),
           );

@@ -2,6 +2,7 @@ import 'package:barbearia_app/firebase_options.dart';
 import 'package:barbearia_app/views/login_page/bloc/login_page_bloc.dart';
 import 'package:barbearia_app/views/login_page/login_page.dart';
 import 'package:barbearia_app/views/menu_page.dart';
+import 'package:barbearia_app/views/signup/bloc/signup_bloc.dart';
 import 'package:flutter/material.dart';
 
 // firebase
@@ -66,6 +67,12 @@ class MyAppView extends StatelessWidget {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: ((context) => const LoginPage())),
+                (route) => false);
+          }
+          if (state is SignupSuccessState) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: ((context) => const MenuPage())),
                 (route) => false);
           }
         },
