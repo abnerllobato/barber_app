@@ -1,5 +1,6 @@
 import 'package:barbearia_app/locator.dart';
 import 'package:barbearia_app/repositories/auth_repository.dart';
+import 'package:barbearia_app/repositories/auth_repository_firebase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +13,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   var _authRepository = serviceLocator.get<AuthRepository>();
 
   SignupBloc() : super(SignupInitial()) {
-    _authRepository = AuthRepository();
+    _authRepository = FirebaseAuthRepository();
     on<SignupButtonEvent>((event, emit) => _onPressed(event));
   }
 
