@@ -46,7 +46,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CadastroPage()));
+                                builder: (context) => const SignupPage()));
                       },
                       child: const Text('Não é Cadastrado ? Cadastre-se')),
                   //    Botão Comentado (Sem Uso)

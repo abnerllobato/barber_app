@@ -6,14 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CadastroPage extends StatefulWidget {
-  const CadastroPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<CadastroPage> createState() => _CadastroPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _CadastroPageState extends State<CadastroPage> {
+class _SignupPageState extends State<SignupPage> {
   final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -21,7 +21,7 @@ class _CadastroPageState extends State<CadastroPage> {
   // globalKey
   final formKey = GlobalKey<FormState>();
 
-  final FormValid = ValueNotifier<bool>(false);
+  final formValid = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -87,7 +87,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   child: Form(
                     key: formKey,
                     onChanged: () {
-                      FormValid.value =
+                      formValid.value =
                           formKey.currentState?.validate() ?? false;
                     },
                     child: Column(
@@ -114,6 +114,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             if (value.length <= 6) {
                               return 'Insira o Nome Completo';
                             }
+                            return null;
                           },
                           controller: _controllerName,
                           labelText: "Nome",
@@ -127,6 +128,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             if (EmailValidator.validate(value) == false) {
                               return 'Insira um e-mail valido';
                             }
+                            return null;
                           },
                           controller: _controllerEmail,
                           labelText: "E-mail",
@@ -141,6 +143,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             if (value.length < 6) {
                               return 'Senha Muito Fraca';
                             }
+                            return null;
                           },
                           controller: _controllerPassword,
                           labelText: "Senha",
@@ -151,7 +154,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           padding: const EdgeInsets.all(8.0),
                           width: MediaQuery.of(context).size.width,
                           child: ValueListenableBuilder<bool>(
-                            valueListenable: FormValid,
+                            valueListenable: formValid,
                             builder: (_, formValid, child) {
                               return CupertinoButton(
                                 onPressed: !formValid

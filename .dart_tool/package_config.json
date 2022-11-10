@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "get_it",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/get_it-7.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_sign_in",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-5.4.2",
       "packageUri": "lib/",
@@ -326,7 +332,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-10-22T20:04:38.922295Z",
+  "generated": "2022-10-28T17:46:20.974372Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }
