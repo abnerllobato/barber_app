@@ -14,12 +14,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
   SignupBloc() : super(SignupInitial()) {
     _authRepository = FirebaseAuthRepository();
-    on<SignupButtonEvent>((event, emit) => _onPressed(event));
+    on<SignupButtonEvent>((event, emit) => _onPressed(event, emit));
   }
 
-  Future<void> _onPressed(
-    SignupButtonEvent event,
-  ) async {
+  Future<void> _onPressed(SignupButtonEvent event, emit) async {
     emit(SignupLoading());
     try {
       await _authRepository.signup(

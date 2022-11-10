@@ -21,7 +21,7 @@ class _SignupPageState extends State<SignupPage> {
   // globalKey
   final formKey = GlobalKey<FormState>();
 
-  final FormValid = ValueNotifier<bool>(false);
+  final formValid = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -87,7 +87,7 @@ class _SignupPageState extends State<SignupPage> {
                   child: Form(
                     key: formKey,
                     onChanged: () {
-                      FormValid.value =
+                      formValid.value =
                           formKey.currentState?.validate() ?? false;
                     },
                     child: Column(
@@ -114,6 +114,7 @@ class _SignupPageState extends State<SignupPage> {
                             if (value.length <= 6) {
                               return 'Insira o Nome Completo';
                             }
+                            return null;
                           },
                           controller: _controllerName,
                           labelText: "Nome",
@@ -127,6 +128,7 @@ class _SignupPageState extends State<SignupPage> {
                             if (EmailValidator.validate(value) == false) {
                               return 'Insira um e-mail valido';
                             }
+                            return null;
                           },
                           controller: _controllerEmail,
                           labelText: "E-mail",
@@ -141,6 +143,7 @@ class _SignupPageState extends State<SignupPage> {
                             if (value.length < 6) {
                               return 'Senha Muito Fraca';
                             }
+                            return null;
                           },
                           controller: _controllerPassword,
                           labelText: "Senha",
@@ -151,7 +154,7 @@ class _SignupPageState extends State<SignupPage> {
                           padding: const EdgeInsets.all(8.0),
                           width: MediaQuery.of(context).size.width,
                           child: ValueListenableBuilder<bool>(
-                            valueListenable: FormValid,
+                            valueListenable: formValid,
                             builder: (_, formValid, child) {
                               return CupertinoButton(
                                 onPressed: !formValid

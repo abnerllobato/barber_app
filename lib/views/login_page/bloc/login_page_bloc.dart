@@ -17,13 +17,12 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
 
   LoginPageBloc() : super(const LoginPageState.unauthenticated()) {
     _authRepository = FirebaseAuthRepository();
-    on<LoginButtonPressed>((event, emit) => _onUserChanged(event));
-    on<SignOutButtonPressed>(((event, emit) => _onLogoutRequested()));
+    on<LoginButtonPressed>((event, emit) => _onUserChanged(event, emit));
+    on<SignOutButtonPressed>(
+        ((event, emit) => _onLogoutRequested(event, emit)));
   }
 
-  Future<void> _onUserChanged(
-    LoginButtonPressed event,
-  ) async {
+  Future<void> _onUserChanged(LoginButtonPressed event, emit) async {
     emit(const LoginPageState.loading());
     try {
       await _authRepository.logInWithEmailAndPassword(
@@ -37,7 +36,7 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
     }
   }
 
-  _onLogoutRequested() {
+  _onLogoutRequested(event, emit) {
     _authRepository.logOut();
     emit(const LoginPageState.logoutState());
     emit(const LoginPageState.unauthenticated());
